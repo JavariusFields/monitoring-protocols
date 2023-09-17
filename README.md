@@ -58,12 +58,30 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 "Wireshark is a network protocol analyzer, or an application that captures packets from a network connection, such as from your computer to your home office or the internet."
 </p>
 4. Open Wireshark. Once it's open, click the blue ethernet button in the top left and then filter for ICMP traffic.
+5. Now we are goint to retrieve the private ip address for virtual machine 2 so we can ping the linux machine from our windows virtual machine. Then, open up the command line or powershell and ping 10.0.0.5 (or whatever your private ip is for VM-2) to ping the Ubuntu (linux) machine. We should notice that the ping from the windows machine sent 4 packets with zero loss which tells us that the ping was successful.
+6. Now, we will initiate a perpetual ping to VM-2 the same way we pinged in either Powershell or the command line. we can do the same steps to ping except we will add '-t' after the ping command. A perpetual ping will ping non-stop. We will then deny incoming ICMP traffic from inside the settings in the Azure portal.
+7. To deny incoming ICMP traffic, we need to go into the Azure portal, click networking, then select "add inbound rule". Then, we need to click "ICMP", "deny", and change the priority to 200 so this will make it the higher priority and it will work. Notice how as our rule goes into effect and the ping request is not longer going through. To stop the perpetual ping, use command (ctrl) C
 </p>
 <img <img width="767" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/8a134b3b-37b5-4dbf-9e89-c98eadcb589b">
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
-<p>
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+<img <img width="899" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/4bcea8bb-7caa-492d-833d-af4da7383870">
 </p>
-<br />
+<img <img width="1157" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/765fd378-55f5-423b-8b1a-bcfbcb989b23">
+</p>
+<img width="896" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/be5afa14-3e39-402f-a9c6-6f78a6303fbe">
+</p>
+<img width="1076" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/d2702780-9d65-40b8-8e51-187cec9fc038">
+</p>
+8. Now we will observe SSH traffic. In Wireshark, we now want to filter for SSH traffic only. We now need to SSH into the Ubuntu machine from the Windows virtual machine. In Powershell or command line type "ssh username@ the private ip address from VM-2. Type yes and it will then ask for the password. Be mindful that as you enter the password, you wont be able to see it because of the nature of sshing into a device and press enter. If done correctly, we should see traffic inside of Wireshark. To exit the ssh connection, type "exit"
+</p>
+<img width="1236" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/c0fccf83-bf5e-4542-ad41-1ea20f43ec17"> 
+</p> 
+9. In Wireshark, we can now filter for DHCP traffic. Now, inside command line (or Powershell), we can see DHCP traffic by trying to issue the Windows VM a new IP so we will type ipconfig /renew. You may lose connection and it should fail but, you should be able to observe some DHCP traffic in Wireshark
+</p>
+<img width="1222" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/30e2651d-4ee1-4c77-885e-9656b9b16ed6">
+</p>
+10. In Wireshark, we can now filter for DNS traffic
+
+
+
+
