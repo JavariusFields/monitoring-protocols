@@ -76,11 +76,15 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 </p>
 <img width="1236" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/c0fccf83-bf5e-4542-ad41-1ea20f43ec17"> 
 </p> 
-9. In Wireshark, we can now filter for DHCP traffic. Now, inside command line (or Powershell), we can see DHCP traffic by trying to issue the Windows VM a new IP so we will type ipconfig /renew. You may lose connection and it should fail but, you should be able to observe some DHCP traffic in Wireshark
+9. In Wireshark, we can now filter for DHCP traffic. Now, inside command line (or Powershell), we can see DHCP traffic by trying to issue the Windows VM a new IP so we will type ipconfig /renew. You may lose connection and it may fail but, you should be able to observe some DHCP traffic in Wireshark
 </p>
 <img width="1222" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/30e2651d-4ee1-4c77-885e-9656b9b16ed6">
 </p>
-10. In Wireshark, we can now filter for DNS traffic
+10. In Wireshark, we can now filter for DNS traffic. Within the command line, type nslookup followed by a site such as google.com and you should see DNS traffic inside of Wireshark.
+</p>
+<img width="1352" alt="image" src="https://github.com/JavariusFields/monitoring-protocols/assets/144845191/b1253fb2-c5b2-4391-8c1b-222a508a6374">
+10. In Wireshark, we can filter for RDP traffic. You can also filter RDP traffic by typing tcp.port == 3389. You should see immediate traffic. That's because it is a protocol that always shows a live stream from one computer to another so it is always in transmission.
+<p>
 
 
 
